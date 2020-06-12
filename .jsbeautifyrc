@@ -1,0 +1,10 @@
+{
+  "indent_size": 2,
+  "end_with_newline": false,
+  "indent_with_tabs": false,
+  "jslint_happy": true,
+  "wrap_line_length": 100,
+  "break_chained_methods": true,
+  "brace_style": "collapse,preserve-inline",
+  "keep_array_indentation": true
+}
