@@ -1,5 +1,14 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Initialization of the project
+
+1. Clone the project
+2. In the project directory, you must first run:
+
+### `npm install`
+
+This will install all the necessary modules of the project
+
 ## Available Scripts
 
 In the project directory, you can run:
