@@ -5,8 +5,11 @@ import ReactMapboxGl, {
   Layer
 } from "react-mapbox-gl";
 
+import { Button } from "@material-ui/core";
+
 import { getHourlyTemps } from "../api/Api";
 import { transformData } from "../helpers/transformTools";
+import Styles from "./MapboxMaps.styles";
 import TempDisplay from "./TempDisplay";
 
 const Map = ReactMapboxGl({
@@ -18,6 +21,7 @@ const MapBoxMap = () => {
   const [data, setData] = useState([]);
   const [pinLocation, setPinLocation] = useState([23.65, 37.93]);
   const [isFetchingData, setIsFetchingData] = useState(false);
+  const [orderType, setOrderType] = useState("ASC");
 
   const onMapPress = async (_, coords) => {
     const payload = coords.lngLat;
@@ -37,17 +41,42 @@ const MapBoxMap = () => {
     }
   };
 
+  const orderDates = () => {
+    if (data.length === 0) return;
+
+    const test = [];
+    data.forEach((item) => {
+      test.unshift(item);
+    });
+
+    changeOrderType();
+    setData(test);
+  };
+
+  const changeOrderType = () => {
+    setOrderType(orderType === "DESC" ? "ASC" : "DESC");
+  };
+
   return (
     <Map
       center={pinLocation}
       style="mapbox://styles/mapbox/streets-v8"
-      containerStyle={{
-        height: "100vh",
-        width: "100vw",
-      }}
+      containerStyle={Styles.map}
       onClick={onMapPress}
     >
-      <TempDisplay data={data} isFetchingData={isFetchingData} />
+      <Button
+        style={Styles.button}
+        variant="contained"
+        color="primary"
+        onClick={orderDates}
+      >
+        Sort by date ({orderType})
+      </Button>
+      <TempDisplay
+        data={data}
+        isFetchingData={isFetchingData}
+        location={pinLocation}
+      />
       <Layer type="symbol" id="marker" layout={{ "icon-image": "marker-15" }}>
         <Feature coordinates={pinLocation} />
       </Layer>

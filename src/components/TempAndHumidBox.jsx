@@ -1,22 +1,27 @@
 import React from "react";
 
-const TempAndHumidBox = ({ temperature, humidity, date }) => {
+const TempAndHumidBox = ({ temperature,tempUnit, humidity,humidityUnit, date }) => {
   return (
     <div
       style={{
-        width: "80px",
-        height: "80px",
-        backgroundColor: "red",
-        margin: "10px",
-        overflowWrap: "break-word",
+				height: '90px',
+				padding: '10px',
+				margin: '25px 10px 10px',
+				overflowWrap: 'break-word',
+				backgroundColor: 'lightgray',
+				borderRadius: '4px',
+				color: 'black',
+				fontWeight: 'bold',
+				minWidth: '90px',
       }}
     >
-      Date:
-      {'\n'+date}
-      Temp:
-      {"\n" + temperature}
-      Humidity:
-      {"\n" + humidity}
+      {date}
+      <br />
+			Temp :
+			<br />
+      {`${temperature} ${tempUnit}`}
+      <br />
+      {`Humidity : ${humidity} ${humidityUnit}`}
     </div>
   );
 };
